@@ -1,0 +1,133 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --cell-size: 100px;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.board {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-gap: 3px;
+  grid-template-columns: repeat(3, auto);
+  background-color: black;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--cell-size);
+  width: var(--cell-size);
+  background-color: white;
+  font-size: 4em;
+  font-weight: bolder;
+}
+
+.cell.x,
+.cell.circle {
+  cursor: not-allowed;
+}
+
+.cell.x::before,
+.cell.x::after {
+  background-color: black;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before {
+  background-color: lightgray;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.cell.x::before,
+.cell.x::after {
+  content: "";
+  position: absolute;
+  height: calc(var(--cell-size) * 0.9);
+  width: calc(var(--cell-size) * 0.1);
+}
+
+.board.x .cell:hover::before,
+.cell.x::before {
+  transform: rotate(45deg);
+}
+
+.board.x .cell:hover::after,
+.cell.x::after {
+  transform: rotate(-45deg);
+}
+
+.cell.circle::before,
+.cell.circle::after {
+  background-color: black;
+}
+
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+  background-color: lightgray;
+}
+
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.cell.circle::before,
+.cell.circle::after {
+  content: " ";
+  height: calc(var(--cell-size) * 0.9);
+  width: calc(var(--cell-size) * 0.9);
+
+  border-radius: 50%;
+  position: absolute;
+}
+
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.cell.circle::after {
+  height: calc(var(--cell-size) * 0.7);
+  width: calc(var(--cell-size) * 0.7);
+  background-color: white;
+}
+.winScreen{
+  display: none;
+  height:100vh ;
+  width: 100vw;
+  background-color: black;
+  position: absolute;
+  opacity: 0.9;
+}
+
+.winText{
+  color: white;
+  font-size: 4rem;
+}
+.restart{
+  font-size: 2rem;
+  border-radius: 10px;
+}
+.restart:hover{
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+}
+
+.winScreen.message{
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
